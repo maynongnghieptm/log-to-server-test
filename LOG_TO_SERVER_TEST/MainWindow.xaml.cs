@@ -1,48 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-
 using System.Diagnostics;
 using System.IO;
-using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-
-
-using System.Net;
-using System.Text;  // For class Encoding
-using System.IO;    // For StreamReader
-
-using System.Net.Http;
 using RestSharp;
-using DataFormat = RestSharp.DataFormat;
-using System.Windows.Markup;
 
-
+using LOG_TO_SERVER_TEST.DTO;
+using LOG_TO_SERVER_TEST.Pages;
+using Microsoft.Win32;
+using LOG_TO_SERVER_TEST.Model;
 
 namespace LOG_TO_SERVER_TEST
 {
@@ -51,6 +17,12 @@ namespace LOG_TO_SERVER_TEST
     /// </summary>
     public partial class MainWindow : Window
     {
+        OpenFileDialog openFileDialog;
+        CreateNewRoute createNewRoute;
+        string token;
+        Tractor tractor;
+        Field field;
+        ApiService apiService = new ApiService();
         String GET_string_file(String fullPath)
         {
 
@@ -67,9 +39,6 @@ namespace LOG_TO_SERVER_TEST
 
         void READ_Plan_Configure(String JSON_STRING )
         {
-
-
-
             dynamic JSON_OBJECT = JObject.Parse(JSON_STRING);
             if (JSON_OBJECT == null)
             {
@@ -97,11 +66,8 @@ namespace LOG_TO_SERVER_TEST
                 int size = Origin_P_OUT_ll.Count / 2;
                 for (int i = 0; i < size; i++)
                 {
-
                     double X = ((double)Origin_P_OUT_ll[i * 2]);
                     double Y = ((double)Origin_P_OUT_ll[i * 2 + 1]);
-
-
                 }
 
             }
@@ -111,42 +77,116 @@ namespace LOG_TO_SERVER_TEST
 
         }
 
-
-
         public MainWindow()
         {
+            const string wss = "http://192.168.1.14:443";
+            const string httpServer = "http://192.168.1.14:443";
+
             InitializeComponent();
-
-
-
-            String JSON_STRING = GET_string_file("C://Tractor_project/Tractor_App/MY_TRACTOR/html/Plan_Configure.txt");
-
-            if (JSON_STRING.Length >= 0)
-            {
-                READ_Plan_Configure(JSON_STRING);
-            }
-
             
+            //WebSocketService webSocketService = new WebSocketService(new SocketIO(wss));
+            //SocketIO client = webSocketService.GetClient();
+            //webSocketService.connectWSServer();
 
 
-            var client = new RestClient("http://192.168.1.9:443");
-            var request = new RestRequest("/auth/login");
-            request.RequestFormat = DataFormat.Json;
-            request.AddJsonBody(new { username = "sonnguyenhong", password = "123123" }); // Anonymous type object is converted to Json body
+            //client.OnConnected += webSocketService.onConnected; 
 
-            var response = client.Post(request);
-            var content = response.Content; // Raw content as string
-                                            // var response2 = client.Post<Person>(request);
-                                            //var name = response2.Data.Name;
-            Debug.WriteLine(content);
-            Debug.WriteLine(content);
-            Debug.WriteLine(content);
-            Debug.WriteLine(content);
+            //String JSON_STRING = GET_string_file("C://Tractor_project/Tractor_App/MY_TRACTOR/html/Plan_Configure.txt");
+
+            //if (JSON_STRING.Length >= 0)
+            //{
+            //    READ_Plan_Configure(JSON_STRING);
+            //}
+        }
+
+        public ApiService GetApiService()
+        {
+            return apiService;
+        }
+
+        public string GetToken()
+        {
+            return token;
+        }
+
+        public Tractor GetTractor()
+        {
+            return tractor;
+        }
+
+        public Field GetField()
+        {
+            return field;
+        }
+
+        public void SetTractor(Tractor tractor)
+        {
+            this.tractor = tractor;
+        }
+
+        public void SetField(Field field)
+        {
+            this.field = field;
+        }
 
 
-            MessageBox.Show(content);
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
 
+        }
 
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+            createNewRoute = new CreateNewRoute(this);
+            createNewRoute.Show();
+        }
+
+        private void Button_Click_3(object sender, RoutedEventArgs e)
+        {
+            
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            string username = usernameInput.Text;
+            string password = passwordInput.Text;
+
+            LoginDTO loginDTO = new LoginDTO
+            {
+                username = username,
+                password = password
+            };
+            string content = apiService.sendJsonPostRequest("/auth/login", loginDTO);
+            JObject jsonContent = JObject.Parse(content);
+            token = jsonContent["data"]["token"].ToString();
+            MessageBox.Show(token);
+        }
+
+        private void usernameInput_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
+        {
+
+        }
+
+        private void TextBox_TextChanged_1(object sender, System.Windows.Controls.TextChangedEventArgs e)
+        {
+            
+        }
+
+        private void TextBox_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
+        {
+
+        }
+
+        private void connectToWssBtn_Click(object sender, RoutedEventArgs e)
+        {
+            SaveTractorLog saveTractorLog = new SaveTractorLog(this);
+            saveTractorLog.Show();
+        }
+
+        private void Button_Click_4(object sender, RoutedEventArgs e)
+        {
+            SelectTractorAndField selectTractorAndField = new SelectTractorAndField(this);
+            selectTractorAndField.Show();
         }
     }
 }

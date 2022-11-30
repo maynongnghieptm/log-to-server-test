@@ -7,7 +7,27 @@
     </ApplicationDefinition>
   </ItemGroup>
   <ItemGroup>
+    <Compile Update="Pages\CreateNewRoute.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Pages\SaveTractorLog.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Pages\SelectTractorAndField.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
     <Page Update="MainWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Pages\CreateNewRoute.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Pages\SaveTractorLog.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Pages\SelectTractorAndField.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
