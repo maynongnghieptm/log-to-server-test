@@ -1,0 +1,25 @@
+﻿<Window x:Class="LOG_TO_SERVER_TEST.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:LOG_TO_SERVER_TEST"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0*"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <TextBox Margin="0,31,0,0" TextWrapping="Wrap" Text="MENU" VerticalAlignment="Top" Width="373" TextChanged="TextBox_TextChanged" Grid.Column="1" HorizontalAlignment="Center" TextAlignment="Center" FontWeight="Bold" FontSize="22"/>
+        <Button Content="Create new route" Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="42" Margin="72,354,0,0" VerticalAlignment="Top" Width="124" Click="Button_Click_2"/>
+        <Label Content="Username" Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="32" Margin="214,102,0,0" VerticalAlignment="Top" Width="92"/>
+        <Button Content="Login" HorizontalAlignment="Center" Height="52" Margin="0,237,0,0" VerticalAlignment="Top" Width="114" Grid.Column="1" Click="Button_Click"/>
+        <Label Content="Password" Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="31" Margin="214,150,0,0" VerticalAlignment="Top" Width="73"/>
+        <TextBox x:Name="usernameInput" Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="32" Margin="343,102,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="195" TextChanged="usernameInput_TextChanged"/>
+        <TextBox x:Name="passwordInput" Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="31" Margin="343,150,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="195" TextChanged="TextBox_TextChanged_1"/>
+        <Button x:Name="connectToWssBtn" Content="Connect to WSS" Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="42" Margin="214,354,0,0" VerticalAlignment="Top" Width="132" Click="connectToWssBtn_Click"/>
+        <Button Content="Select Tractor and Field" Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="42" Margin="372,354,0,0" VerticalAlignment="Top" Width="136" Click="Button_Click_4"/>
+    </Grid>
+</Window>

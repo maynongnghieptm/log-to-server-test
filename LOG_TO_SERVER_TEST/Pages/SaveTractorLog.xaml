@@ -1,0 +1,20 @@
+﻿<Window x:Class="LOG_TO_SERVER_TEST.Pages.SaveTractorLog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:LOG_TO_SERVER_TEST.Pages"
+        mc:Ignorable="d"
+        Title="SaveTractorLog" Height="450" Width="800">
+    <Grid>
+        <Label Content="Websocket Server" HorizontalAlignment="Left" Height="30" Margin="116,71,0,0" VerticalAlignment="Top" Width="126"/>
+        <Label Content="KẾT NỐI WEBSOCKET SERVER" HorizontalAlignment="Center" Height="41" Margin="0,10,0,0" VerticalAlignment="Top" Width="348" FontSize="24" FontWeight="Bold"/>
+        <TextBox x:Name="serverHostInput" HorizontalAlignment="Left" Height="30" Margin="303,71,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="225" TextChanged="serverHostInput_TextChanged" Text="http://192.168.1.14:443"/>
+        <Button Content="Connect" HorizontalAlignment="Left" Height="30" Margin="554,71,0,0" VerticalAlignment="Top" Width="94" Click="Button_Click"/>
+        <TextBox x:Name="statusConnectionTbx" HorizontalAlignment="Left" Height="58" Margin="303,159,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="225" TextChanged="statusConnectionTbx_TextChanged"/>
+        <Button x:Name="disconnectWsBtn" Content="Disconnect" HorizontalAlignment="Left" Height="30" Margin="672,71,0,0" VerticalAlignment="Top" Width="102" Click="Button_Click_1"/>
+        <Button x:Name="sendLogsBtn" Content="Send logs" HorizontalAlignment="Left" Height="31" Margin="554,117,0,0" VerticalAlignment="Top" Width="94" Click="Button_Click_2"/>
+        <Button Content="Stop send logs" HorizontalAlignment="Left" Height="31" Margin="672,117,0,0" VerticalAlignment="Top" Width="102" Click="Button_Click_3"/>
+
+    </Grid>
+</Window>

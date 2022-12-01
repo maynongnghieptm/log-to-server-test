@@ -1,0 +1,20 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net6.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="EngineIoClientDotNet" Version="0.9.22" />
+    <PackageReference Include="H.Socket.IO" Version="1.2.10" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.2-beta3" />
+    <PackageReference Include="RestSharp" Version="108.0.3-alpha.0.11" />
+    <PackageReference Include="SocketIOClient" Version="3.0.6" />
+    <PackageReference Include="SocketIoClientDotNet" Version="0.9.13" />
+    <PackageReference Include="WebSocketSharp" Version="1.0.3-rc11" />
+  </ItemGroup>
+
+</Project>
