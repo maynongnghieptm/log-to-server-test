@@ -1,7 +1,12 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.IO;
+using System.Net.Http;
 using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
+using Newtonsoft.Json.Linq;
 using SocketIOClient;
 
 namespace LOG_TO_SERVER_TEST.Pages
@@ -31,7 +36,13 @@ namespace LOG_TO_SERVER_TEST.Pages
             string host = serverHostInput.Text;
             try
             {
-                webSocketService = new WebSocketService(new SocketIO(host));
+                webSocketService = new WebSocketService(new SocketIO(host, new SocketIOOptions
+                {
+                    ExtraHeaders = new Dictionary<string, string>
+                    {
+                        { "tractorid", "64d9cdd6c48bca2dd296ad19" }
+                    }
+                }));
                 webSocketService.connectWSServer();
                 SocketIO client = webSocketService.GetClient();
                 client.OnConnected += (sender, e) =>
@@ -39,6 +50,25 @@ namespace LOG_TO_SERVER_TEST.Pages
                     this.Dispatcher.Invoke(async () =>
                     {
                         statusConnectionTbx.Text = "Connect to WS Server successfully!";
+                    });
+                    client.On("fileCreated", async (message) =>
+                    {
+                        var dataArray = JArray.Parse(message.ToString());
+                        Debug.WriteLine(dataArray[0]["fileConfig"]);
+                        using(HttpClient httpClient = new HttpClient())
+                        {
+                            HttpResponseMessage response = await httpClient.GetAsync(dataArray[0]["fileConfig"].ToString());
+                            if(response.IsSuccessStatusCode)
+                            {
+                                byte[] contentBytes = await response.Content.ReadAsByteArrayAsync();
+                                string localFilePath = "fileConfig.txt";
+
+                                File.WriteAllBytes(localFilePath, contentBytes);
+                            } else
+                            {
+                                Debug.WriteLine($"Failed to download file. Status code: {response.StatusCode}");
+                            }
+                        }
                     });
                 };
             } catch (Exception ex)
@@ -54,7 +84,7 @@ namespace LOG_TO_SERVER_TEST.Pages
 
         private void sendLogs(WebSocketService webSocketService, string message)
         {
-            webSocketService.sendTractorLogs("send logs", message);
+            webSocketService.sendTractorLogs("logs", message);
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
@@ -69,18 +99,25 @@ namespace LOG_TO_SERVER_TEST.Pages
             {
                 sending = true;
                 int cnt = 0;
+                string msg = "{\"t\":\"0\",\"data\":{\"id\":[\"1\",\"1\"],\"drive\":[0,1,2,0,0],\"time\":[26,12,2022,9,32,45,97],\"llh\":[20.9553559616953,105.846090000165,0],\"xyz\":[48587961.6456527,2317439.06053528,0],\"ypr\":[0,0,0],\"rfbs\":[0,0,0,0],\"tha\":[0,0,0],\"bt\":[0,0],\"frs\":[0,24.48,0,0],}}";
                 while (sending)
                 {
                     if (cnt < 1)
                     {
-                        sendLogs(webSocketService, this.mainWindow.GetTractor().GetId() + "*" + this.mainWindow.GetField().GetId() + "*1668589200000*start_message_go_hear*1");
+                        sendLogs(webSocketService, this.mainWindow.GetTractor().GetId() + "|" + this.mainWindow.GetField().GetId() + "|1668589200000|" + msg + "|1");
                         cnt++;
                     }
-                    else
+                    else if(cnt < 15)
                     {
-                        sendLogs(webSocketService, this.mainWindow.GetTractor().GetId() + "*" + this.mainWindow.GetField().GetId() + "*1668589200000*message_go_hear*2");
+                        sendLogs(webSocketService, this.mainWindow.GetTractor().GetId() + "|" + this.mainWindow.GetField().GetId() + "|1668589200000|" + msg + "|2");
                         cnt++;
+                    } else
+                    {
+                        sendLogs(webSocketService, this.mainWindow.GetTractor().GetId() + "|" + this.mainWindow.GetField().GetId() + "|1668589200000|" + msg + "|0");
+                        //sending = false;
+                        cnt = 0;
                     }
+                    Debug.WriteLine("Hello");
                     Thread.Sleep(1000);
                 }
             });

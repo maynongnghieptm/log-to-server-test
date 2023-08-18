@@ -9,7 +9,7 @@
     <Grid>
         <Label Content="Websocket Server" HorizontalAlignment="Left" Height="30" Margin="116,71,0,0" VerticalAlignment="Top" Width="126"/>
         <Label Content="KẾT NỐI WEBSOCKET SERVER" HorizontalAlignment="Center" Height="41" Margin="0,10,0,0" VerticalAlignment="Top" Width="348" FontSize="24" FontWeight="Bold"/>
-        <TextBox x:Name="serverHostInput" HorizontalAlignment="Left" Height="30" Margin="303,71,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="225" TextChanged="serverHostInput_TextChanged" Text="http://192.168.1.14:443"/>
+        <TextBox x:Name="serverHostInput" HorizontalAlignment="Left" Height="30" Margin="303,71,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="225" TextChanged="serverHostInput_TextChanged" Text="http://localhost:8000"/>
         <Button Content="Connect" HorizontalAlignment="Left" Height="30" Margin="554,71,0,0" VerticalAlignment="Top" Width="94" Click="Button_Click"/>
         <TextBox x:Name="statusConnectionTbx" HorizontalAlignment="Left" Height="58" Margin="303,159,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="225" TextChanged="statusConnectionTbx_TextChanged"/>
         <Button x:Name="disconnectWsBtn" Content="Disconnect" HorizontalAlignment="Left" Height="30" Margin="672,71,0,0" VerticalAlignment="Top" Width="102" Click="Button_Click_1"/>

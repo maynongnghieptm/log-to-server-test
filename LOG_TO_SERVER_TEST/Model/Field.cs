@@ -13,7 +13,7 @@ namespace LOG_TO_SERVER_TEST.Model
 
         public Field()
         {
-
+                
         }
 
         public Field(string id, string name)

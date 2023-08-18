@@ -18,6 +18,8 @@ namespace LOG_TO_SERVER_TEST.Pages
     /// <summary>
     /// Interaction logic for SelectTractorAndField.xaml
     /// </summary>
+    /// 
+
     public partial class SelectTractorAndField : Window
     {
         MainWindow mainWindow;

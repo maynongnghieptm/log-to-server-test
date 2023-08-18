@@ -1,17 +1,24 @@
 ﻿using SocketIOClient;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using LOG_TO_SERVER_TEST.Utils;
 
 namespace LOG_TO_SERVER_TEST
 {
     internal class WebSocketService
     {
         SocketIO client;
+
+        long lastTimeReceiveFromServer = 0;
+
+        const long SERVER_RESPONSE_TIMEOUT = 3000;
+
 
         public WebSocketService(SocketIO client)
         {
@@ -42,11 +49,15 @@ namespace LOG_TO_SERVER_TEST
         {
             try
             {
-                if(this.client != null && this.client.Connected)
+                if (this.client != null && this.client.Connected)
                 {
-                    await this.client.EmitAsync(eventName, message);
+                        await this.client.EmitAsync(eventName, response =>
+                        {
+                            Debug.WriteLine(response.ToString());
+                        }, message);
                 }
-            } catch (Exception e)
+            }
+            catch (Exception e)
             {
                 MessageBox.Show("Exception Occured when send logs to server");
             }
@@ -55,7 +66,7 @@ namespace LOG_TO_SERVER_TEST
         public async void onConnected(object? sender, EventArgs e) 
         {
             Console.WriteLine("Connected to websocket server");
-            sendTractorLogs("send logs", "dca8616a-e0a7-4b09-8dd7-a5a97c27a687*13403c4f-5c5f-4c15-afa6-2a009265edce*1668589200000*start_message_go_hear*1");
+            //sendTractorLogs("send logs", "dca8616a-e0a7-4b09-8dd7-a5a97c27a687*13403c4f-5c5f-4c15-afa6-2a009265edce*1668589200000*start_message_go_hear*1");
         }
     }
 }
