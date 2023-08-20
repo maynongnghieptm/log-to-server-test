@@ -1,24 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "D:\\HongSon\\c_sharp\\LOG_TEST_SERVER\\LOG_TO_SERVER_TEST\\LOG_TO_SERVER_TEST.csproj": {}
+    "F:\\HongSon\\Code\\log-to-server-test\\LOG_TO_SERVER_TEST\\LOG_TO_SERVER_TEST.csproj": {}
   },
   "projects": {
-    "D:\\HongSon\\c_sharp\\LOG_TEST_SERVER\\LOG_TO_SERVER_TEST\\LOG_TO_SERVER_TEST.csproj": {
+    "F:\\HongSon\\Code\\log-to-server-test\\LOG_TO_SERVER_TEST\\LOG_TO_SERVER_TEST.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\HongSon\\c_sharp\\LOG_TEST_SERVER\\LOG_TO_SERVER_TEST\\LOG_TO_SERVER_TEST.csproj",
+        "projectUniqueName": "F:\\HongSon\\Code\\log-to-server-test\\LOG_TO_SERVER_TEST\\LOG_TO_SERVER_TEST.csproj",
         "projectName": "LOG_TO_SERVER_TEST",
-        "projectPath": "D:\\HongSon\\c_sharp\\LOG_TEST_SERVER\\LOG_TO_SERVER_TEST\\LOG_TO_SERVER_TEST.csproj",
-        "packagesPath": "C:\\Users\\phung\\.nuget\\packages\\",
-        "outputPath": "D:\\HongSon\\c_sharp\\LOG_TEST_SERVER\\LOG_TO_SERVER_TEST\\obj\\",
+        "projectPath": "F:\\HongSon\\Code\\log-to-server-test\\LOG_TO_SERVER_TEST\\LOG_TO_SERVER_TEST.csproj",
+        "packagesPath": "C:\\Users\\HP\\.nuget\\packages\\",
+        "outputPath": "F:\\HongSon\\Code\\log-to-server-test\\LOG_TO_SERVER_TEST\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\phung\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Users\\HP\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -84,24 +80,6 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "downloadDependencies": [
-            {
-              "name": "Microsoft.AspNetCore.App.Ref",
-              "version": "[6.0.11, 6.0.11]"
-            },
-            {
-              "name": "Microsoft.NETCore.App.Host.win-x64",
-              "version": "[6.0.11, 6.0.11]"
-            },
-            {
-              "name": "Microsoft.NETCore.App.Ref",
-              "version": "[6.0.11, 6.0.11]"
-            },
-            {
-              "name": "Microsoft.WindowsDesktop.App.Ref",
-              "version": "[6.0.11, 6.0.11]"
-            }
-          ],
           "frameworkReferences": {
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
@@ -110,7 +88,7 @@
               "privateAssets": "none"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.100\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.306\\RuntimeIdentifierGraph.json"
         }
       }
     }

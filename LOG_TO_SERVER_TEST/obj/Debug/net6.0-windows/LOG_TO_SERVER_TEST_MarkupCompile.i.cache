@@ -4,16 +4,16 @@
 winexe
 C#
 .cs
-D:\HongSon\c_sharp\LOG_TEST_SERVER\LOG_TO_SERVER_TEST\obj\Debug\net6.0-windows\
+F:\HongSon\Code\log-to-server-test\LOG_TO_SERVER_TEST\obj\Debug\net6.0-windows\
 LOG_TO_SERVER_TEST
 none
 false
 TRACE;DEBUG;NET;NET6_0;NETCOREAPP
-D:\HongSon\c_sharp\LOG_TEST_SERVER\LOG_TO_SERVER_TEST\App.xaml
+F:\HongSon\Code\log-to-server-test\LOG_TO_SERVER_TEST\App.xaml
 4975854470
 
 171714551130
-2051892836170
+205-1123645948
 MainWindow.xaml;Pages\CreateNewRoute.xaml;Pages\SaveTractorLog.xaml;Pages\SelectTractorAndField.xaml;
 
 True

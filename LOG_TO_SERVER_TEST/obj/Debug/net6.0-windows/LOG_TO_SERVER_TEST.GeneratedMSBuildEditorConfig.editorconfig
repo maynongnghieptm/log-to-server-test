@@ -8,4 +8,4 @@ build_property.PlatformNeutralAssembly =
 build_property.EnforceExtendedAnalyzerRules = 
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = LOG_TO_SERVER_TEST
-build_property.ProjectDir = D:\HongSon\c_sharp\LOG_TEST_SERVER\LOG_TO_SERVER_TEST\
+build_property.ProjectDir = F:\HongSon\Code\log-to-server-test\LOG_TO_SERVER_TEST\

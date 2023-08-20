@@ -34,13 +34,14 @@ namespace LOG_TO_SERVER_TEST.Pages
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             string host = serverHostInput.Text;
+            string tractorid = "64e2241bf3ea921e3f7855bb";
             try
             {
                 webSocketService = new WebSocketService(new SocketIO(host, new SocketIOOptions
                 {
                     ExtraHeaders = new Dictionary<string, string>
                     {
-                        { "tractorid", "64d9cdd6c48bca2dd296ad19" }
+                        { "tractorid", tractorid }
                     }
                 }));
                 webSocketService.connectWSServer();
@@ -51,16 +52,20 @@ namespace LOG_TO_SERVER_TEST.Pages
                     {
                         statusConnectionTbx.Text = "Connect to WS Server successfully!";
                     });
-                    client.On("fileCreated", async (message) =>
+                    client.On(tractorid, async (message) =>
                     {
+                        Debug.WriteLine("Hello");
                         var dataArray = JArray.Parse(message.ToString());
+                       
                         Debug.WriteLine(dataArray[0]["fileConfig"]);
                         using(HttpClient httpClient = new HttpClient())
                         {
                             HttpResponseMessage response = await httpClient.GetAsync(dataArray[0]["fileConfig"].ToString());
+                            
                             if(response.IsSuccessStatusCode)
                             {
                                 byte[] contentBytes = await response.Content.ReadAsByteArrayAsync();
+                                Debug.WriteLine("Writing to file ...");
                                 string localFilePath = "fileConfig.txt";
 
                                 File.WriteAllBytes(localFilePath, contentBytes);
