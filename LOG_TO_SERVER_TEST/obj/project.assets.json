@@ -797,11 +797,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "F:\\HongSon\\Code\\log-to-server-test\\LOG_TO_SERVER_TEST\\LOG_TO_SERVER_TEST.csproj",
+      "projectUniqueName": "F:\\HongSon\\Code\\tractor_simulator\\log-to-server-test\\LOG_TO_SERVER_TEST\\LOG_TO_SERVER_TEST.csproj",
       "projectName": "LOG_TO_SERVER_TEST",
-      "projectPath": "F:\\HongSon\\Code\\log-to-server-test\\LOG_TO_SERVER_TEST\\LOG_TO_SERVER_TEST.csproj",
+      "projectPath": "F:\\HongSon\\Code\\tractor_simulator\\log-to-server-test\\LOG_TO_SERVER_TEST\\LOG_TO_SERVER_TEST.csproj",
       "packagesPath": "C:\\Users\\HP\\.nuget\\packages\\",
-      "outputPath": "F:\\HongSon\\Code\\log-to-server-test\\LOG_TO_SERVER_TEST\\obj\\",
+      "outputPath": "F:\\HongSon\\Code\\tractor_simulator\\log-to-server-test\\LOG_TO_SERVER_TEST\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\HP\\AppData\\Roaming\\NuGet\\NuGet.Config",

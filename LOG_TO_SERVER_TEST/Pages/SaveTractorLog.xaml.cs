@@ -8,6 +8,7 @@ using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
 using Newtonsoft.Json.Linq;
+using Quobject.SocketIoClientDotNet.Client;
 using SocketIOClient;
 
 namespace LOG_TO_SERVER_TEST.Pages
@@ -21,6 +22,7 @@ namespace LOG_TO_SERVER_TEST.Pages
         WebSocketService webSocketService;
         Thread sendLogsThread;
         string tractorid = "64e2241bf3ea921e3f7855bb";
+        string[] connectedUserIds = new string[] { "64e2228ef3ea921e3f7855b6" };
         bool sending = false;
         public SaveTractorLog(MainWindow mainWindow)
         {
@@ -53,6 +55,20 @@ namespace LOG_TO_SERVER_TEST.Pages
                     {
                         statusConnectionTbx.Text = "Connect to WS Server successfully!";
                     });
+
+                    for(int i = 0; i < connectedUserIds.Length; i++) {
+                        int currentIndex = i;
+                        client.On($"{connectedUserIds[currentIndex]}-{tractorid}", async (message) =>
+                        {
+                            Debug.WriteLine(message);
+                            Debug.WriteLine($"{connectedUserIds[currentIndex]}-{tractorid}-ack");
+                            await client.EmitAsync($"{connectedUserIds[currentIndex]}-{tractorid}-ack", (response) =>
+                            {
+                                Debug.WriteLine("Response");
+                            } ,message.ToString());
+                        });
+                    }
+
                     client.On(this.tractorid, async (message) =>
                     {
                         Debug.WriteLine("Hello");
@@ -109,7 +125,7 @@ namespace LOG_TO_SERVER_TEST.Pages
 
                 var jsonObject = new
                 {
-                    missionId = DateTimeOffset.UtcNow.ToUnixTimeMilliseconds(),
+                    missionId = "tractor01-" + DateTimeOffset.UtcNow.ToUnixTimeMilliseconds().ToString(),
                     logs = msg,
                 };
 
